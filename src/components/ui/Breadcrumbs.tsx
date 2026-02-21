@@ -18,6 +18,11 @@ const routeNames: Record<string, string> = {
     'ebooks': 'eBook Store',
     'reader': 'Reader',
     'settings': 'Settings',
+    'badges': 'Achievements',
+    'analytics': 'Analytics',
+    'qr-codes': 'QR Codes',
+    'audit-log': 'Audit Log',
+    'map': 'Library Map',
 };
 
 const Breadcrumbs: React.FC = () => {

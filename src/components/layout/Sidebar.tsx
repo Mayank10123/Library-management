@@ -5,7 +5,8 @@ import {
     LayoutDashboard, BookOpen, UserPlus, Users, BookMarked,
     RotateCcw, CalendarClock, DollarSign, BarChart3, Bell,
     ChevronLeft, ChevronRight, LogOut, Library, PlusCircle,
-    Calendar, Clock, BookOpenCheck, Settings,
+    Calendar, Clock, BookOpenCheck, Settings, Trophy,
+    TrendingUp, QrCode, Shield, Map,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -26,6 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                 { to: '/', icon: LayoutDashboard, label: 'Dashboard', roles: ['admin', 'librarian', 'member'] },
                 { to: '/calendar', icon: Calendar, label: 'Calendar', roles: ['admin', 'librarian', 'member'] },
                 { to: '/timeline', icon: Clock, label: 'Timeline', roles: ['admin', 'librarian', 'member'] },
+                { to: '/map', icon: Map, label: 'Library Map', roles: ['admin', 'librarian', 'member'] },
             ]
         },
         {
@@ -33,6 +35,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                 { to: '/books', icon: BookOpen, label: 'Books', roles: ['admin', 'librarian', 'member'] },
                 { to: '/books/add', icon: PlusCircle, label: 'Add Book', roles: ['admin', 'librarian'] },
                 { to: '/ebooks', icon: BookOpenCheck, label: 'eBook Store', roles: ['admin', 'librarian', 'member'] },
+                { to: '/qr-codes', icon: QrCode, label: 'QR Codes', roles: ['admin', 'librarian'] },
             ]
         },
         {
@@ -46,6 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             section: 'People', items: [
                 { to: '/members', icon: Users, label: 'Members', roles: ['admin', 'librarian'] },
                 { to: '/members/add', icon: UserPlus, label: 'Add Member', roles: ['admin', 'librarian'] },
+                { to: '/badges', icon: Trophy, label: 'Achievements', roles: ['admin', 'librarian', 'member'] },
             ]
         },
         {
@@ -55,7 +59,9 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         },
         {
             section: 'Admin', items: [
+                { to: '/analytics', icon: TrendingUp, label: 'Analytics', roles: ['admin'] },
                 { to: '/reports', icon: BarChart3, label: 'Reports', roles: ['admin'] },
+                { to: '/audit-log', icon: Shield, label: 'Audit Log', roles: ['admin'] },
                 { to: '/notifications', icon: Bell, label: 'Notifications', roles: ['admin', 'librarian', 'member'] },
                 { to: '/settings', icon: Settings, label: 'Settings', roles: ['admin', 'librarian', 'member'] },
             ]

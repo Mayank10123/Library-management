@@ -5,12 +5,14 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { LibraryProvider } from './context/LibraryContext';
 import { ToastProvider } from './context/ToastContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { GamificationProvider } from './context/GamificationContext';
 import { ContextMenuProvider } from './components/ui/ContextMenu';
 import ErrorBoundary from './components/ui/ErrorBoundary';
 import LoadingSkeleton from './components/ui/LoadingSkeleton';
 import CommandPalette from './components/ui/CommandPalette';
 import ThemePanel from './components/ui/ThemePanel';
 import OnboardingTour from './components/ui/OnboardingTour';
+import ChatWidget from './components/ui/ChatWidget';
 import Layout from './components/layout/Layout';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
@@ -29,6 +31,11 @@ import CalendarPage from './pages/CalendarPage';
 import TimelinePage from './pages/TimelinePage';
 import EbookStorePage from './pages/EbookStorePage';
 import SettingsPage from './pages/SettingsPage';
+import BadgesPage from './pages/BadgesPage';
+import AnalyticsPage from './pages/AnalyticsPage';
+import QRGenerator from './pages/QRGenerator';
+import AuditLogPage from './pages/AuditLogPage';
+import LibraryMapPage from './pages/LibraryMapPage';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> = ({ children, roles }) => {
   const { isAuthenticated, user } = useAuth();
@@ -45,6 +52,7 @@ const AppRoutes: React.FC = () => {
       <CommandPalette />
       <ThemePanel />
       <OnboardingTour />
+      <ChatWidget />
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />} />
@@ -65,6 +73,11 @@ const AppRoutes: React.FC = () => {
             <Route path="timeline" element={<TimelinePage />} />
             <Route path="ebooks" element={<EbookStorePage />} />
             <Route path="settings" element={<SettingsPage />} />
+            <Route path="badges" element={<BadgesPage />} />
+            <Route path="analytics" element={<ProtectedRoute roles={['admin']}><AnalyticsPage /></ProtectedRoute>} />
+            <Route path="qr-codes" element={<ProtectedRoute roles={['admin', 'librarian']}><QRGenerator /></ProtectedRoute>} />
+            <Route path="audit-log" element={<ProtectedRoute roles={['admin']}><AuditLogPage /></ProtectedRoute>} />
+            <Route path="map" element={<LibraryMapPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
@@ -89,11 +102,13 @@ const App: React.FC = () => {
         <ThemeProvider>
           <AuthProvider>
             <LibraryProvider>
-              <ToastProvider>
-                <ContextMenuProvider>
-                  <AppRoutes />
-                </ContextMenuProvider>
-              </ToastProvider>
+              <GamificationProvider>
+                <ToastProvider>
+                  <ContextMenuProvider>
+                    <AppRoutes />
+                  </ContextMenuProvider>
+                </ToastProvider>
+              </GamificationProvider>
             </LibraryProvider>
           </AuthProvider>
         </ThemeProvider>
