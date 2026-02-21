@@ -10,6 +10,24 @@ Currently, two official plugins are available:
 ## React Compiler
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## file Structure
+    ******/
+├── src/
+│   ├── components/
+│   │   ├── layout/          (Header, Layout, Sidebar)
+│   │   └── ui/              (20+ UI components - modals, widgets, panels, etc.)
+│   ├── context/             (5 context providers for app-wide state)
+│   ├── pages/               (22 page components for different routes)
+│   ├── services/            (StorageService for data persistence)
+│   ├── data/                (mockData.ts for demo data)
+│   ├── App.tsx              (Main app routing)
+│   ├── main.tsx             (Entry point)
+│   └── index.css            (Global styles - 2253 lines)
+├── public/                  (vite.svg only)
+├── index.html               (Entry HTML file with viewport meta)
+├── vite.config.ts           (Vite configuration)
+├── tsconfig.json            (TypeScript config)
+└── package.json             (Dependencies)
 
 ## Expanding the ESLint configuration
 
