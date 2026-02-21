@@ -1,19 +1,19 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { BarChart3, Download, BookOpen, Users, AlertTriangle, TrendingUp } from 'lucide-react';
+import { Download, BookOpen, Users, AlertTriangle, TrendingUp } from 'lucide-react';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-    PieChart, Pie, Cell, LineChart, Line,
+    Cell, LineChart, Line,
 } from 'recharts';
 import { useLibrary } from '../context/LibraryContext';
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
-const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: 'spring', damping: 20 } } };
+const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: 'spring' as const, damping: 20 } } };
 
 type ReportType = 'issued' | 'overdue' | 'members' | 'popular';
 
 const ReportsPage: React.FC = () => {
-    const { books, members, transactions, fines } = useLibrary();
+    const { books, members, transactions } = useLibrary();
     const [reportType, setReportType] = useState<ReportType>('issued');
 
     const reportTypes = [

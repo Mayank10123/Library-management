@@ -65,7 +65,7 @@ const DashboardPage: React.FC = () => {
 
             {/* Stats */}
             <motion.div className="stats-grid" variants={item}>
-                {stats.map((s, i) => (
+                {stats.map((s) => (
                     <motion.div
                         key={s.label}
                         className="glass-card stat-card"

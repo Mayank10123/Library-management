@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Settings, Sun, Moon, Palette, Check, Download, Upload, Trash2, Info, Database, Bell, Clock, DollarSign, RotateCcw, Keyboard } from 'lucide-react';
+import { Sun, Moon, Palette, Check, Download, Upload, Trash2, Info, Database, Bell, Clock } from 'lucide-react';
 import { useTheme, ACCENT_COLORS } from '../context/ThemeContext';
 import { StorageService } from '../services/StorageService';
 import { useToast } from '../context/ToastContext';
@@ -79,17 +79,17 @@ const SettingsPage: React.FC = () => {
                         <label className="form-label" style={{ marginBottom: 'var(--sp-2)', display: 'block' }}>Accent Color</label>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                             {ACCENT_COLORS.map(c => (
-                                <button key={c.name} onClick={() => setAccent(c.name)}
+                                <button key={c.name} onClick={() => setAccent(c)}
                                     title={c.name}
                                     style={{
                                         width: 36, height: 36, borderRadius: 'var(--radius-md)',
-                                        background: c.primary, border: accent === c.name ? '2px solid white' : '2px solid transparent',
+                                        background: c.primary, border: accent.name === c.name ? '2px solid white' : '2px solid transparent',
                                         cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                                         transition: 'transform 0.15s, border-color 0.2s',
-                                        transform: accent === c.name ? 'scale(1.15)' : 'scale(1)',
+                                        transform: accent.name === c.name ? 'scale(1.15)' : 'scale(1)',
                                     }}
                                 >
-                                    {accent === c.name && <Check size={16} color="white" />}
+                                    {accent.name === c.name && <Check size={16} color="white" />}
                                 </button>
                             ))}
                         </div>

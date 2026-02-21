@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { QrCode, Download, Printer, Copy } from 'lucide-react';
+import { Download, Copy } from 'lucide-react';
 import { useLibrary } from '../context/LibraryContext';
 
 // Pure canvas QR code generator (simplified)

@@ -4,7 +4,7 @@ import { UserPlus, CheckCircle } from 'lucide-react';
 import { useLibrary } from '../context/LibraryContext';
 import { useToast } from '../context/ToastContext';
 
-const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: 'spring', damping: 20 } } };
+const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: 'spring' as const, damping: 20 } } };
 
 const AddMemberPage: React.FC = () => {
     const { addMember } = useLibrary();
@@ -28,6 +28,7 @@ const AddMemberPage: React.FC = () => {
             status: 'active',
             booksIssued: 0,
             totalFines: 0,
+            role: 'member',
         });
         toast('success', `${form.name} registered successfully!`);
         setSubmitted(true);

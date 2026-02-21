@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, BarChart3, BookOpen, Users, DollarSign, Calendar } from 'lucide-react';
+import { TrendingUp, BarChart3, BookOpen, DollarSign, Calendar } from 'lucide-react';
 import { useLibrary } from '../context/LibraryContext';
 
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: 'spring' as const, damping: 20 } } };
@@ -8,7 +8,7 @@ const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transiti
 // Pure SVG mini bar chart
 const MiniBarChart: React.FC<{ data: number[]; labels: string[]; color: string; height?: number }> = ({ data, labels, color, height = 140 }) => {
     const max = Math.max(...data, 1);
-    const barW = 100 / data.length;
+    // const barW = 100 / data.length;
     return (
         <svg width="100%" height={height} viewBox={`0 0 ${data.length * 50} ${height}`} style={{ overflow: 'visible' }}>
             {data.map((v, i) => {
@@ -95,7 +95,7 @@ const LineChart: React.FC<{ data: number[]; labels: string[]; color: string; hei
 };
 
 const AnalyticsPage: React.FC = () => {
-    const { transactions, books, members, fines } = useLibrary();
+    const { transactions, books, fines } = useLibrary();
 
     // Category distribution
     const catDist = useMemo(() => {

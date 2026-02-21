@@ -4,7 +4,7 @@ import { RotateCcw, Search, CheckCircle, AlertTriangle, DollarSign } from 'lucid
 import { useLibrary } from '../context/LibraryContext';
 import { useToast } from '../context/ToastContext';
 
-const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: 'spring', damping: 20 } } };
+const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: 'spring' as const, damping: 20 } } };
 
 const ReturnPage: React.FC = () => {
     const { transactions, books, members, returnBook } = useLibrary();

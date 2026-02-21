@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { PlusCircle, BookOpen, CheckCircle } from 'lucide-react';
+import { PlusCircle, CheckCircle } from 'lucide-react';
 import { useLibrary } from '../context/LibraryContext';
 import { useToast } from '../context/ToastContext';
 import Confetti from '../components/ui/Confetti';

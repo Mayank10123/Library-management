@@ -36,6 +36,7 @@ export interface Member {
     status: 'active' | 'suspended' | 'expired';
     booksIssued: number;
     totalFines: number;
+    role: Role;
 }
 
 export interface Transaction {
@@ -87,7 +88,7 @@ export const users: User[] = [
 ];
 
 // ─── Books ───
-const categories = ['Fiction', 'Science', 'Technology', 'History', 'Philosophy', 'Mathematics', 'Art', 'Literature', 'Psychology', 'Business'];
+// const categories = ['Fiction', 'Science', 'Technology', 'History', 'Philosophy', 'Mathematics', 'Art', 'Literature', 'Psychology', 'Business'];
 const coverColors = [
     'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
@@ -130,21 +131,21 @@ export const books: Book[] = [
 
 // ─── Members ───
 export const members: Member[] = [
-    { id: 'm1', name: 'Sarah Parker', email: 'sarah@uni.edu', phone: '+1 555-0101', department: 'Computer Science', membershipType: 'student', joinDate: '2025-09-01', status: 'active', booksIssued: 2, totalFines: 0 },
-    { id: 'm2', name: 'James Wilson', email: 'james@uni.edu', phone: '+1 555-0102', department: 'Mathematics', membershipType: 'student', joinDate: '2025-08-15', status: 'active', booksIssued: 3, totalFines: 5.50 },
-    { id: 'm3', name: 'Dr. Emily Foster', email: 'emily.f@uni.edu', phone: '+1 555-0103', department: 'Physics', membershipType: 'faculty', joinDate: '2024-01-10', status: 'active', booksIssued: 5, totalFines: 0 },
-    { id: 'm4', name: 'Raj Patel', email: 'raj.p@uni.edu', phone: '+1 555-0104', department: 'Engineering', membershipType: 'student', joinDate: '2025-09-20', status: 'active', booksIssued: 1, totalFines: 2.00 },
-    { id: 'm5', name: 'Lisa Chang', email: 'lisa.c@uni.edu', phone: '+1 555-0105', department: 'Literature', membershipType: 'student', joinDate: '2025-07-01', status: 'active', booksIssued: 4, totalFines: 0 },
-    { id: 'm6', name: 'Prof. Alan Brooks', email: 'alan.b@uni.edu', phone: '+1 555-0106', department: 'History', membershipType: 'faculty', joinDate: '2023-06-15', status: 'active', booksIssued: 6, totalFines: 0 },
-    { id: 'm7', name: 'Maria Garcia', email: 'maria.g@uni.edu', phone: '+1 555-0107', department: 'Art', membershipType: 'student', joinDate: '2025-10-01', status: 'active', booksIssued: 0, totalFines: 0 },
-    { id: 'm8', name: 'Thomas Kim', email: 'thomas.k@uni.edu', phone: '+1 555-0108', department: 'Business', membershipType: 'student', joinDate: '2025-06-20', status: 'suspended', booksIssued: 0, totalFines: 15.00 },
-    { id: 'm9', name: 'Dr. Nora Adams', email: 'nora.a@uni.edu', phone: '+1 555-0109', department: 'Psychology', membershipType: 'faculty', joinDate: '2024-03-01', status: 'active', booksIssued: 3, totalFines: 0 },
-    { id: 'm10', name: 'Kevin Wright', email: 'kevin.w@uni.edu', phone: '+1 555-0110', department: 'Computer Science', membershipType: 'student', joinDate: '2025-09-05', status: 'active', booksIssued: 2, totalFines: 1.00 },
-    { id: 'm11', name: 'Anna Clark', email: 'anna.c@uni.edu', phone: '+1 555-0111', department: 'Philosophy', membershipType: 'student', joinDate: '2025-08-01', status: 'active', booksIssued: 1, totalFines: 0 },
-    { id: 'm12', name: 'David Lee', email: 'david.l@uni.edu', phone: '+1 555-0112', department: 'Engineering', membershipType: 'staff', joinDate: '2024-11-15', status: 'active', booksIssued: 2, totalFines: 0 },
-    { id: 'm13', name: 'Sophie Turner', email: 'sophie.t@uni.edu', phone: '+1 555-0113', department: 'Science', membershipType: 'student', joinDate: '2025-09-10', status: 'active', booksIssued: 1, totalFines: 3.00 },
-    { id: 'm14', name: 'Michael Brown', email: 'michael.b@uni.edu', phone: '+1 555-0114', department: 'Mathematics', membershipType: 'student', joinDate: '2025-07-15', status: 'expired', booksIssued: 0, totalFines: 0 },
-    { id: 'm15', name: 'Dr. Rachel Green', email: 'rachel.g@uni.edu', phone: '+1 555-0115', department: 'Biology', membershipType: 'faculty', joinDate: '2023-09-01', status: 'active', booksIssued: 4, totalFines: 0 },
+    { id: 'm1', name: 'Sarah Parker', email: 'sarah@uni.edu', phone: '+1 555-0101', department: 'Computer Science', membershipType: 'student', joinDate: '2025-09-01', status: 'active', booksIssued: 2, totalFines: 0, role: 'member' },
+    { id: 'm2', name: 'James Wilson', email: 'james@uni.edu', phone: '+1 555-0102', department: 'Mathematics', membershipType: 'student', joinDate: '2025-08-15', status: 'active', booksIssued: 3, totalFines: 5.50, role: 'member' },
+    { id: 'm3', name: 'Dr. Emily Foster', email: 'emily.f@uni.edu', phone: '+1 555-0103', department: 'Physics', membershipType: 'faculty', joinDate: '2024-01-10', status: 'active', booksIssued: 5, totalFines: 0, role: 'member' },
+    { id: 'm4', name: 'Raj Patel', email: 'raj.p@uni.edu', phone: '+1 555-0104', department: 'Engineering', membershipType: 'student', joinDate: '2025-09-20', status: 'active', booksIssued: 1, totalFines: 2.00, role: 'member' },
+    { id: 'm5', name: 'Lisa Chang', email: 'lisa.c@uni.edu', phone: '+1 555-0105', department: 'Literature', membershipType: 'student', joinDate: '2025-07-01', status: 'active', booksIssued: 4, totalFines: 0, role: 'member' },
+    { id: 'm6', name: 'Prof. Alan Brooks', email: 'alan.b@uni.edu', phone: '+1 555-0106', department: 'History', membershipType: 'faculty', joinDate: '2023-06-15', status: 'active', booksIssued: 6, totalFines: 0, role: 'member' },
+    { id: 'm7', name: 'Maria Garcia', email: 'maria.g@uni.edu', phone: '+1 555-0107', department: 'Art', membershipType: 'student', joinDate: '2025-10-01', status: 'active', booksIssued: 0, totalFines: 0, role: 'member' },
+    { id: 'm8', name: 'Thomas Kim', email: 'thomas.k@uni.edu', phone: '+1 555-0108', department: 'Business', membershipType: 'student', joinDate: '2025-06-20', status: 'suspended', booksIssued: 0, totalFines: 15.00, role: 'member' },
+    { id: 'm9', name: 'Dr. Nora Adams', email: 'nora.a@uni.edu', phone: '+1 555-0109', department: 'Psychology', membershipType: 'faculty', joinDate: '2024-03-01', status: 'active', booksIssued: 3, totalFines: 0, role: 'member' },
+    { id: 'm10', name: 'Kevin Wright', email: 'kevin.w@uni.edu', phone: '+1 555-0110', department: 'Computer Science', membershipType: 'student', joinDate: '2025-09-05', status: 'active', booksIssued: 2, totalFines: 1.00, role: 'member' },
+    { id: 'm11', name: 'Anna Clark', email: 'anna.c@uni.edu', phone: '+1 555-0111', department: 'Philosophy', membershipType: 'student', joinDate: '2025-08-01', status: 'active', booksIssued: 1, totalFines: 0, role: 'member' },
+    { id: 'm12', name: 'David Lee', email: 'david.l@uni.edu', phone: '+1 555-0112', department: 'Engineering', membershipType: 'staff', joinDate: '2024-11-15', status: 'active', booksIssued: 2, totalFines: 0, role: 'member' },
+    { id: 'm13', name: 'Sophie Turner', email: 'sophie.t@uni.edu', phone: '+1 555-0113', department: 'Science', membershipType: 'student', joinDate: '2025-09-10', status: 'active', booksIssued: 1, totalFines: 3.00, role: 'member' },
+    { id: 'm14', name: 'Michael Brown', email: 'michael.b@uni.edu', phone: '+1 555-0114', department: 'Mathematics', membershipType: 'student', joinDate: '2025-07-15', status: 'expired', booksIssued: 0, totalFines: 0, role: 'member' },
+    { id: 'm15', name: 'Dr. Rachel Green', email: 'rachel.g@uni.edu', phone: '+1 555-0115', department: 'Biology', membershipType: 'faculty', joinDate: '2023-09-01', status: 'active', booksIssued: 4, totalFines: 0, role: 'member' },
 ];
 
 // ─── Transactions ───

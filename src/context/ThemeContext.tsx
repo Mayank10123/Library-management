@@ -28,6 +28,7 @@ type ThemeMode = 'dark' | 'light';
 
 interface ThemeContextType {
     mode: ThemeMode;
+    setMode: (mode: ThemeMode) => void;
     accent: AccentColor;
     toggleMode: () => void;
     setAccent: (accent: AccentColor) => void;
@@ -113,7 +114,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }, [accent]);
 
     return (
-        <ThemeContext.Provider value={{ mode, accent, toggleMode, setAccent, isPanelOpen, togglePanel }}>
+        <ThemeContext.Provider value={{ mode, setMode, accent, toggleMode, setAccent, isPanelOpen, togglePanel }}>
             {children}
         </ThemeContext.Provider>
     );

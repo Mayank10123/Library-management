@@ -4,7 +4,7 @@ import { Bell, Clock, BookOpen, AlertTriangle, Info, DollarSign, CheckCheck } fr
 import { useLibrary } from '../context/LibraryContext';
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.04 } } };
-const item = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { type: 'spring', damping: 20 } } };
+const item = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { type: 'spring' as const, damping: 20 } } };
 
 const NotificationsPage: React.FC = () => {
     const { notifications, markNotificationRead, markAllNotificationsRead } = useLibrary();

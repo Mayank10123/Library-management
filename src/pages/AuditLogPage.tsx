@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Filter, Download, Clock, User, BookOpen, DollarSign, LogIn, Trash2 } from 'lucide-react';
+import { Shield, Download, Clock, BookOpen, DollarSign, LogIn } from 'lucide-react';
 
 interface AuditEntry {
     id: string;

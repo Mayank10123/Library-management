@@ -1,0 +1,8 @@
+﻿
+> lib@0.0.0 build
+> tsc -b && vite build
+
+src/pages/DashboardPage.tsx(68,32): error TS6133: 'i' is declared but its value is never read.
+src/pages/EbookStorePage.tsx(2,18): error TS6133: 'AnimatePresence' is declared but its value is never read.
+src/pages/EbookStorePage.tsx(50,12): error TS6133: 'selectedBook' is declared but its value is never read.
+src/pages/EbookStorePage.tsx(50,26): error TS6133: 'setSelectedBook' is declared but its value is never read.

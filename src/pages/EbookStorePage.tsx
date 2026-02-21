@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { BookOpen, Star, ShoppingCart, Search, Eye, Heart, Tag, Download } from 'lucide-react';
 
 interface Ebook {
@@ -47,7 +47,6 @@ const EBOOKS: Ebook[] = [
 const EbookStorePage: React.FC = () => {
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState('');
-    const [selectedBook, setSelectedBook] = useState<Ebook | null>(null);
     const [readingBook, setReadingBook] = useState<Ebook | null>(null);
     const [purchased, setPurchased] = useState<Set<string>>(new Set());
     const [favorites, setFavorites] = useState<Set<string>>(new Set());
