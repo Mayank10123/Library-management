@@ -11,7 +11,7 @@ Currently, two official plugins are available:
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 ## file Structure
-    ******/
+```js
 ├── src/
 │   ├── components/
 │   │   ├── layout/          (Header, Layout, Sidebar)
@@ -28,7 +28,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ├── vite.config.ts           (Vite configuration)
 ├── tsconfig.json            (TypeScript config)
 └── package.json             (Dependencies)
-
+```
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
