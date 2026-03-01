@@ -36,7 +36,7 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import QRGenerator from './pages/QRGenerator';
 import AuditLogPage from './pages/AuditLogPage';
 import LibraryMapPage from './pages/LibraryMapPage';
-
+import Snowfall from "react-snowfall";
 const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> = ({ children, roles }) => {
   const { isAuthenticated, user } = useAuth();
   if (!isAuthenticated) return <Navigate to="/login" replace />;
@@ -96,25 +96,30 @@ const App: React.FC = () => {
 
   if (loading) return <LoadingSkeleton />;
 
-  return (
-    <ErrorBoundary>
-      <BrowserRouter>
-        <ThemeProvider>
-          <AuthProvider>
-            <LibraryProvider>
-              <GamificationProvider>
-                <ToastProvider>
-                  <ContextMenuProvider>
-                    <AppRoutes />
-                  </ContextMenuProvider>
-                </ToastProvider>
-              </GamificationProvider>
-            </LibraryProvider>
-          </AuthProvider>
-        </ThemeProvider>
-      </BrowserRouter>
-    </ErrorBoundary>
-  );
-};
+return (
+  <ErrorBoundary>
+   <BrowserRouter>
 
-export default App;
+  <div style={{ position: "fixed", inset: 0, zIndex: 9999, pointerEvents: "none" }}>
+    <Snowfall snowflakeCount={150} />
+  </div>
+
+  <ThemeProvider>
+        <AuthProvider>
+          <LibraryProvider>
+            <GamificationProvider>
+              <ToastProvider>
+                <ContextMenuProvider>
+                  <AppRoutes />
+                </ContextMenuProvider>
+              </ToastProvider>
+            </GamificationProvider>
+          </LibraryProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  </ErrorBoundary>
+);
+};   // ✅ THIS closing brace is critical
+
+export default App;   // ✅ must be outside component
