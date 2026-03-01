@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sun, Moon, Palette, Check } from 'lucide-react';
 import { useTheme, ACCENT_COLORS } from '../../context/ThemeContext';
 
-const ThemePanel: React.FC = () => {
+const ThemePanel: React.FC<Props> = ({ snow, setSnow }) => {
     const { mode, accent, toggleMode, setAccent, isPanelOpen, togglePanel } = useTheme();
 
     return (
@@ -72,7 +72,18 @@ const ThemePanel: React.FC = () => {
                                 ))}
                             </div>
                         </div>
+                        <div className="theme-panel-section">
+                            <div className="theme-panel-label">Effects</div>
 
+                            <button
+                                className="theme-mode-btn"
+                                onClick={() => setSnow(!snow)}
+                                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                            >
+                                <span>❄ Snowfall</span>
+                                <span>{snow ? "ON" : "OFF"}</span>
+                            </button>
+                        </div>
                         <div className="theme-panel-section">
                             <div className="theme-panel-label">Preview</div>
                             <div className="glass-card" style={{ padding: 'var(--sp-4)', pointerEvents: 'none' }}>

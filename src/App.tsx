@@ -1,84 +1,102 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { LibraryProvider } from './context/LibraryContext';
-import { ToastProvider } from './context/ToastContext';
-import { ThemeProvider } from './context/ThemeContext';
-import { GamificationProvider } from './context/GamificationContext';
-import { ContextMenuProvider } from './components/ui/ContextMenu';
-import ErrorBoundary from './components/ui/ErrorBoundary';
-import LoadingSkeleton from './components/ui/LoadingSkeleton';
-import CommandPalette from './components/ui/CommandPalette';
-import ThemePanel from './components/ui/ThemePanel';
-import OnboardingTour from './components/ui/OnboardingTour';
-import ChatWidget from './components/ui/ChatWidget';
-import Layout from './components/layout/Layout';
-import LoginPage from './pages/LoginPage';
-import DashboardPage from './pages/DashboardPage';
-import BooksPage from './pages/BooksPage';
-import AddBookPage from './pages/AddBookPage';
-import IssuePage from './pages/IssuePage';
-import ReturnPage from './pages/ReturnPage';
-import MembersPage from './pages/MembersPage';
-import AddMemberPage from './pages/AddMemberPage';
-import MemberProfilePage from './pages/MemberProfilePage';
-import ReservationsPage from './pages/ReservationsPage';
-import FinesPage from './pages/FinesPage';
-import ReportsPage from './pages/ReportsPage';
-import NotificationsPage from './pages/NotificationsPage';
-import CalendarPage from './pages/CalendarPage';
-import TimelinePage from './pages/TimelinePage';
-import EbookStorePage from './pages/EbookStorePage';
-import SettingsPage from './pages/SettingsPage';
-import BadgesPage from './pages/BadgesPage';
-import AnalyticsPage from './pages/AnalyticsPage';
-import QRGenerator from './pages/QRGenerator';
-import AuditLogPage from './pages/AuditLogPage';
-import LibraryMapPage from './pages/LibraryMapPage';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { LibraryProvider } from "./context/LibraryContext";
+import { ToastProvider } from "./context/ToastContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { GamificationProvider } from "./context/GamificationContext";
+
+import { ContextMenuProvider } from "./components/ui/ContextMenu";
+import ErrorBoundary from "./components/ui/ErrorBoundary";
+import LoadingSkeleton from "./components/ui/LoadingSkeleton";
+import CommandPalette from "./components/ui/CommandPalette";
+import ThemePanel from "./components/ui/ThemePanel";
+import OnboardingTour from "./components/ui/OnboardingTour";
+import ChatWidget from "./components/ui/ChatWidget";
+import Layout from "./components/layout/Layout";
+
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import BooksPage from "./pages/BooksPage";
+import AddBookPage from "./pages/AddBookPage";
+import IssuePage from "./pages/IssuePage";
+import ReturnPage from "./pages/ReturnPage";
+import MembersPage from "./pages/MembersPage";
+import AddMemberPage from "./pages/AddMemberPage";
+import MemberProfilePage from "./pages/MemberProfilePage";
+import ReservationsPage from "./pages/ReservationsPage";
+import FinesPage from "./pages/FinesPage";
+import ReportsPage from "./pages/ReportsPage";
+import NotificationsPage from "./pages/NotificationsPage";
+import CalendarPage from "./pages/CalendarPage";
+import TimelinePage from "./pages/TimelinePage";
+import EbookStorePage from "./pages/EbookStorePage";
+import SettingsPage from "./pages/SettingsPage";
+import BadgesPage from "./pages/BadgesPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import QRGenerator from "./pages/QRGenerator";
+import AuditLogPage from "./pages/AuditLogPage";
+import LibraryMapPage from "./pages/LibraryMapPage";
+
 import Snowfall from "react-snowfall";
+
+
+// ================= Protected Route =================
 const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> = ({ children, roles }) => {
   const { isAuthenticated, user } = useAuth();
+
   if (!isAuthenticated) return <Navigate to="/login" replace />;
   if (roles && user && !roles.includes(user.role)) return <Navigate to="/" replace />;
+
   return <>{children}</>;
 };
 
-const AppRoutes: React.FC = () => {
+
+// ================= Routes =================
+const AppRoutes: React.FC<{
+  snow: boolean;
+  setSnow: (v: boolean) => void;
+}> = ({ snow, setSnow }) => {
+
   const { isAuthenticated } = useAuth();
 
   return (
     <>
       <CommandPalette />
-      <ThemePanel />
+      <ThemePanel snow={snow} setSnow={setSnow} />
       <OnboardingTour />
       <ChatWidget />
+
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />} />
+
           <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
             <Route index element={<DashboardPage />} />
             <Route path="books" element={<BooksPage />} />
-            <Route path="books/add" element={<ProtectedRoute roles={['admin', 'librarian']}><AddBookPage /></ProtectedRoute>} />
-            <Route path="issue" element={<ProtectedRoute roles={['admin', 'librarian']}><IssuePage /></ProtectedRoute>} />
-            <Route path="return" element={<ProtectedRoute roles={['admin', 'librarian']}><ReturnPage /></ProtectedRoute>} />
-            <Route path="members" element={<ProtectedRoute roles={['admin', 'librarian']}><MembersPage /></ProtectedRoute>} />
-            <Route path="members/add" element={<ProtectedRoute roles={['admin', 'librarian']}><AddMemberPage /></ProtectedRoute>} />
-            <Route path="members/:id" element={<ProtectedRoute roles={['admin', 'librarian']}><MemberProfilePage /></ProtectedRoute>} />
+            <Route path="books/add" element={<ProtectedRoute roles={["admin","librarian"]}><AddBookPage/></ProtectedRoute>} />
+            <Route path="issue" element={<ProtectedRoute roles={["admin","librarian"]}><IssuePage/></ProtectedRoute>} />
+            <Route path="return" element={<ProtectedRoute roles={["admin","librarian"]}><ReturnPage/></ProtectedRoute>} />
+            <Route path="members" element={<ProtectedRoute roles={["admin","librarian"]}><MembersPage/></ProtectedRoute>} />
+            <Route path="members/add" element={<ProtectedRoute roles={["admin","librarian"]}><AddMemberPage/></ProtectedRoute>} />
+            <Route path="members/:id" element={<ProtectedRoute roles={["admin","librarian"]}><MemberProfilePage/></ProtectedRoute>} />
             <Route path="reservations" element={<ReservationsPage />} />
-            <Route path="fines" element={<ProtectedRoute roles={['admin', 'librarian']}><FinesPage /></ProtectedRoute>} />
-            <Route path="reports" element={<ProtectedRoute roles={['admin']}><ReportsPage /></ProtectedRoute>} />
+            <Route path="fines" element={<ProtectedRoute roles={["admin","librarian"]}><FinesPage/></ProtectedRoute>} />
+            <Route path="reports" element={<ProtectedRoute roles={["admin"]}><ReportsPage/></ProtectedRoute>} />
             <Route path="notifications" element={<NotificationsPage />} />
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="timeline" element={<TimelinePage />} />
             <Route path="ebooks" element={<EbookStorePage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="badges" element={<BadgesPage />} />
-            <Route path="analytics" element={<ProtectedRoute roles={['admin']}><AnalyticsPage /></ProtectedRoute>} />
-            <Route path="qr-codes" element={<ProtectedRoute roles={['admin', 'librarian']}><QRGenerator /></ProtectedRoute>} />
-            <Route path="audit-log" element={<ProtectedRoute roles={['admin']}><AuditLogPage /></ProtectedRoute>} />
+            <Route path="analytics" element={<ProtectedRoute roles={["admin"]}><AnalyticsPage/></ProtectedRoute>} />
+            <Route path="qr-codes" element={<ProtectedRoute roles={["admin","librarian"]}><QRGenerator/></ProtectedRoute>} />
+            <Route path="audit-log" element={<ProtectedRoute roles={["admin"]}><AuditLogPage/></ProtectedRoute>} />
             <Route path="map" element={<LibraryMapPage />} />
           </Route>
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>
@@ -86,8 +104,12 @@ const AppRoutes: React.FC = () => {
   );
 };
 
+
+// ================= MAIN APP =================
 const App: React.FC = () => {
+
   const [loading, setLoading] = useState(true);
+  const [snow, setSnow] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 900);
@@ -96,30 +118,33 @@ const App: React.FC = () => {
 
   if (loading) return <LoadingSkeleton />;
 
-return (
-  <ErrorBoundary>
-   <BrowserRouter>
+  return (
+    <ErrorBoundary>
+      <BrowserRouter>
 
-  <div style={{ position: "fixed", inset: 0, zIndex: 9999, pointerEvents: "none" }}>
-    <Snowfall snowflakeCount={150} />
-  </div>
+        {snow && (
+          <div style={{ position:"fixed", inset:0, zIndex:9999, pointerEvents:"none" }}>
+            <Snowfall snowflakeCount={150} />
+          </div>
+        )}
 
-  <ThemeProvider>
-        <AuthProvider>
-          <LibraryProvider>
-            <GamificationProvider>
-              <ToastProvider>
-                <ContextMenuProvider>
-                  <AppRoutes />
-                </ContextMenuProvider>
-              </ToastProvider>
-            </GamificationProvider>
-          </LibraryProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  </ErrorBoundary>
-);
-};   // ✅ THIS closing brace is critical
+        <ThemeProvider>
+          <AuthProvider>
+            <LibraryProvider>
+              <GamificationProvider>
+                <ToastProvider>
+                  <ContextMenuProvider>
+                    <AppRoutes snow={snow} setSnow={setSnow}/>
+                  </ContextMenuProvider>
+                </ToastProvider>
+              </GamificationProvider>
+            </LibraryProvider>
+          </AuthProvider>
+        </ThemeProvider>
 
-export default App;   // ✅ must be outside component
+      </BrowserRouter>
+    </ErrorBoundary>
+  );
+};
+
+export default App;
