@@ -104,5 +104,5 @@ const ThemePanel: React.FC<Props> = ({ snow, setSnow }) => {
         </AnimatePresence>
     );
 };
-//
+
 export default ThemePanel;
