@@ -57,7 +57,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> 
 // ================= Routes =================
 const AppRoutes: React.FC<{
   snow: boolean;
-  setSnow: (v: boolean) => void;
+  setSnow: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ snow, setSnow }) => {
 
   const { isAuthenticated } = useAuth();

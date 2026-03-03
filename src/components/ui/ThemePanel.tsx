@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sun, Moon, Palette, Check } from 'lucide-react';
 import { useTheme, ACCENT_COLORS } from '../../context/ThemeContext';
 
+interface Props {
+  snow: boolean;
+  setSnow: React.Dispatch<React.SetStateAction<boolean>>;
+}
 const ThemePanel: React.FC<Props> = ({ snow, setSnow }) => {
     const { mode, accent, toggleMode, setAccent, isPanelOpen, togglePanel } = useTheme();
 
